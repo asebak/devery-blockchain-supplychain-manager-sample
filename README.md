@@ -1,0 +1,1 @@
+# devery-supplychain-manager
