@@ -1,0 +1,26 @@
+<button *ngIf="!brandName; else brandTpl" mat-button (click)="onCreateBrandClick()">Create Brand</button>
+
+<ng-template #brandTpl>
+  <div>{{brandName}}</div>
+  <button mat-button (click)="onAddProductClick()">Add Product</button>
+</ng-template>
+
+<ng-template #createBrandTpl>
+  <form class="create-brand-form" fxLayout="column">
+    <mat-form-field class="brand-name-input">
+      <input #brandName matInput placeholder="Brand Name">
+    </mat-form-field>
+
+    <button mat-button [mat-dialog-close]="{brandName: brandName.value}">Create</button>
+  </form>
+</ng-template>
+
+<ng-template #createProductTpl>
+  <form class="create-product-form" fxLayout="column">
+    <mat-form-field class="product-name-input">
+      <input #productName matInput placeholder="Product Name">
+    </mat-form-field>
+
+    <button mat-button [mat-dialog-close]="{productName: productName.value}">Create</button>
+  </form>
+</ng-template>

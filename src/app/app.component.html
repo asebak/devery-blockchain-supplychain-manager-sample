@@ -1,0 +1,22 @@
+
+<mat-toolbar>
+  <button *ngIf="!app" mat-button (click)="onCreateClick()">Create New App</button>
+  <a [routerLink]="app.appName" *ngIf="app">{{app.appName}}</a>
+</mat-toolbar>
+
+<ng-container *ngIf="contextSrv.userId">
+<router-outlet></router-outlet>
+</ng-container>
+
+<ng-template #createNewAppTpl>
+  <form class="create-app-form" fxLayout="column">
+    <mat-form-field class="app-name-input">
+      <input #appName matInput placeholder="App Name">
+    </mat-form-field>
+
+    <mat-form-field class="account-id-input">
+      <input #accountId matInput placeholder="Account ID" [value]="contextSrv.userId">
+    </mat-form-field>
+  </form>
+  <button mat-button [mat-dialog-close]="{appName: appName.value, accountId: accountId.value}">Create</button>
+</ng-template>
